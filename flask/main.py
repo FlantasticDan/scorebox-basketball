@@ -2,12 +2,12 @@ from flask import Flask, render_template, request, send_file
 from flask_socketio import SocketIO, emit
 
 from images import Logos
-from manager import FootballManager
+from manager import BasketballManager
 from bundle import bundle
 
 VERSION = 'v2.0.0 (03262021)'
 LOGOS = Logos()
-MANAGER = None # type: FootballManager
+MANAGER = None # type: BasketballManager
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet', logger=False, engineio_logger=False)
@@ -21,7 +21,7 @@ def initialize():
     global LOGOS
     global MANAGER
     setup = request.form
-    MANAGER = FootballManager(**setup)
+    MANAGER = BasketballManager(**setup)
     files = request.files
     LOGOS.set_home(files['home_logo'].read(), files['home_logo'].filename)
     LOGOS.set_visitor(files['visitor_logo'].read(), files['visitor_logo'].filename)
@@ -62,19 +62,6 @@ def touchdown(data):
 def status_request(data):
     global MANAGER
     return emit('status', MANAGER.status_export())
-
-@socketio.on('flag-status')
-def flag_status(data):
-    global MANAGER
-    MANAGER.set_flag_status(data)
-    return emit('status', MANAGER.status_export(), broadcast=True)
-
-@socketio.on('flag-alert')
-def flag_alert(payload):
-    global MANAGER
-    MANAGER.set_alert_visibility('off')
-    socketio.emit('status', MANAGER.status_export(), broadcast=True)
-    return emit('flag-alert', payload, broadcast=True)
 
 @socketio.on('alert-mode-status')
 def alert_mode_status(data):

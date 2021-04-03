@@ -4,10 +4,10 @@ from typing import Dict
 
 import socketio
 
-from consoles.sports import Football
+from consoles.sports import Basketball
 
-class FootballManager:
-    '''Football Game State Manager'''
+class BasketballManager:
+    '''Basketball Game State Manager'''
     def __init__(self, home_team, home_mascot, home_color, visitor_team, visitor_mascot, visitor_color, com_port) -> None:
         self.nonce = token_hex(6)
 
@@ -20,7 +20,6 @@ class FootballManager:
 
         self.game_state = None # type: Dict
 
-        self.flag_status = 'console'
         self.alert_mode = 'neutral'
         self.alert_visibility = 'off'
         self.alert_text = ''
@@ -30,7 +29,7 @@ class FootballManager:
         self.client_thread = Thread(target=self.socket_client)
         self.client_thread.start()
 
-        self.console = Football(com_port)
+        self.console = Basketball(com_port)
         self.console.on_update = self.updater
     
     def updater(self, game_state):
@@ -54,16 +53,12 @@ class FootballManager:
     
     def status_export(self) -> Dict:
         return {
-            'flag': self.flag_status,
             'alert_mode': self.alert_mode,
             'alert_visibility': self.alert_visibility,
             'alert_text': self.alert_text,
             'display_mode': self.display_mode
         }
-    
-    def set_flag_status(self, new_status) -> None:
-        self.flag_status = new_status
-    
+
     def set_alert_mode(self, new_status) -> None:
         self.alert_mode = new_status
     

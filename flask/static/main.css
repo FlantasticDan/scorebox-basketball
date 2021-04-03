@@ -311,7 +311,7 @@ button.toggle.toggled{
 }
 
 .color-btns button.selected{
-    background-image: url('/static/img/football_icon.svg');
+    background-image: url('/static/img/basketball_icon.svg');
 }
 
 .color-btns button.red, .color.red{

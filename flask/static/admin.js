@@ -17,14 +17,6 @@ const rawToGo = document.getElementById('raw-to-go')
 const rawBallOn = document.getElementById('raw-ball-on')
 const rawFlag = document.getElementById('raw-flag')
 
-const toggleFlagOff = document.getElementById("toggle-flag-off")
-const toggleFlagOn = document.getElementById("toggle-flag-on")
-const toggleFlagConsole = document.getElementById("toggle-flag-console")
-
-const flagInput = document.getElementById('flag-input')
-const homePenalty = document.getElementById('home-penalty')
-const visitorPenalty = document.getElementById('visitor-penalty')
-
 const toggleAlertOff = document.getElementById('toggle-alert-off')
 const toggleAlertOn = document.getElementById('toggle-alert-on')
 const toggleAlertModeHome = document.getElementById('toggle-alert-mode-home')

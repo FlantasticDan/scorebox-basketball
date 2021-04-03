@@ -4,7 +4,7 @@
 
     <head>
 
-        <title>ScoreBox Football Overlay</title>
+        <title>ScoreBox Basketball Overlay</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,13 +13,6 @@
     </head>
 
     <body>
-
-        <div class="alert-box team-flag home-alert animate-out" id="home-flag">
-        </div>
-
-        <div class="alert-box team-flag visitor-alert animate-out" id="visitor-flag">
-        </div>
-
         <div class="alert-box hidden animate-out" id="neutral-alert">
         </div>
 
@@ -31,11 +24,6 @@
 
         <div id="scorebox" class="animate-out">
             <div id="home" class="team-box {{home_color}}">
-                <div class="timeouts">
-                    <div class="timeout" id="home-timeout-1"></div>
-                    <div class="timeout" id="home-timeout-2"></div>
-                    <div class="timeout" id="home-timeout-3"></div>
-                </div>
                 <div class="team-logo">
                 </div>
                 <div class="team-name">
@@ -61,8 +49,6 @@
                 <div id="downs">
                     5th & 24
                 </div>
-                <div id="home-possesion" class="possesion hide"></div>
-                <div id="visitor-possesion" class="possesion hide"></div>
             </div>
             <div id="visitor" class="team-box {{visitor_color}}">
                 <div class="team-logo">
@@ -76,24 +62,7 @@
                 <div class="team-score" id="visitor-score">
                     0
                 </div>
-                <div class="timeouts">
-                    <div class="timeout" id="visitor-timeout-1"></div>
-                    <div class="timeout" id="visitor-timeout-2"></div>
-                    <div class="timeout" id="visitor-timeout-3"></div>
-                </div>
             </div>
-        </div>
-
-        <div id="flag-overlay" class="hidden animate-out">
-            FLAG
-        </div>
-
-        <div class="touchdown {{home_color}} animate-out" id="home-touchdown">
-            <span class='letter-spacing-bug'>.</span>TOUCHDOWN
-        </div>
-
-        <div class="touchdown {{visitor_color}} animate-out" id="visitor-touchdown">
-            <span class='letter-spacing-bug'>.</span>TOUCHDOWN
         </div>
 
         <div id="scorestate" class="animate-out out">

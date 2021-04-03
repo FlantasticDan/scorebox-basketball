@@ -17,7 +17,6 @@
     --name-row: 1.25vw;
     --mascot-row: 2.25vw;
     --bottom-offset: 5vh;
-    --flag-yellow: #ffd436;
 }
 
 body{
@@ -74,27 +73,6 @@ body{
     width: 25vw;
 }
 
-.alert-box.team-flag{
-    width: 25vw;
-    background-color: var(--flag-yellow);
-    color: var(--dark-grey);
-    transform: translateY(calc(var(--name-row) + 0.25vw));
-}
-
-.alert-box.team-flag.animate{
-    animation: flag-alert-peek 5s;
-}
-
-@keyframes flag-alert-peek{
-    0%, 100%{
-        transform: translateY(calc(var(--name-row) + 0.25vw));
-    }
-
-    10%, 90%{
-        transform: translateY(0vw);
-    }
-}
-
 .alert-box.home-alert{
     left: 20vw
 }
@@ -102,47 +80,6 @@ body{
 .alert-box.visitor-alert{
     right: 20vw;
     left: unset;
-}
-
-.touchdown{
-    width: var(--box-width);
-    height: 0vw;
-    position: absolute;
-    bottom: var(--bottom-offset);
-    left: 20vw;
-    border: 0 solid var(--light-grey);
-    box-sizing: border-box;
-    font-family: 'Open Sans';
-    color: white;
-    font-size: 2.5vw;
-    font-weight: 900;
-    text-align: center;
-    overflow: hidden;
-}
-
-@keyframes touchdown-scored{
-    0%{
-        height: 0vh;
-        border-width: 0;
-    }
-
-    20%, 80%{
-        height: var(--box-height);
-        border-width: var(--box-border);
-    }
-
-    0%{
-        letter-spacing: normal;
-    }
-
-    100%{
-        letter-spacing: 3.5vw;
-    }
-
-}
-
-.touchdown.animate{
-    animation: touchdown-scored 5s;
 }
 
 .letter-spacing-bug{
@@ -232,7 +169,7 @@ body{
 }
 
 #home{
-    grid-template-areas: "logo timeouts name score" "logo timeouts mascot score";
+    grid-template-areas: "logo name score" "logo mascot score";
     grid-template-columns: auto auto 1fr auto;
     text-align: right;
 }
@@ -242,7 +179,7 @@ body{
 }
 
 #visitor{
-    grid-template-areas: "score name timeouts logo" "score mascot timeouts logo";
+    grid-template-areas: "score name logo" "score mascot logo";
     grid-template-columns: auto 1fr auto auto;
     text-align: left;
 }
@@ -320,32 +257,6 @@ body{
     opacity: 0;
 }
 
-.timeouts{
-    grid-area: timeouts;
-    width: .5vw;
-    height: 100%;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
-    display: grid;
-    gap: .1vw;
-    padding: .1vw;
-    box-sizing: border-box;
-}
-
-.timeout{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(1,1,1,0.3);
-}
-
-.timeout.available{
-    background-color: white;
-}
-
-#scorebox.flag{
-    border-color: var(--flag-yellow);
-}
-
 #scorestate{
     width: 10.5vw;
     height: 12vw;
@@ -408,26 +319,6 @@ body{
     font-size: 1.2vw;
     color: #edab40;
     text-transform: uppercase;
-}
-
-#flag-overlay{
-    position: absolute;
-    width: 5vw;
-    height: calc(2vw - var(--box-border));
-    bottom: calc(var(--bottom-offset) + var(--box-border));
-    left: 47.5vw;
-    background-color: var(--flag-yellow);
-    color: var(--dark-grey);
-    text-align: center;
-    font-family: 'Open Sans';
-    font-weight: 900;
-    font-size: 1.25vw;
-    transition: height 0.5s;
-    overflow: hidden;
-}
-
-#flag-overlay.hidden{
-    height: 0vh;
 }
 
 .animate-out{
