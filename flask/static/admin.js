@@ -9,6 +9,12 @@ const rawVisitorPossesion = document.getElementById('raw-visitor-possesion')
 const rawClock = document.getElementById('raw-clock')
 const rawShot = document.getElementById('raw-shot')
 const rawPeriod = document.getElementById('raw-period')
+const rawHomeFouls = document.getElementById('raw-home-fouls')
+const rawHomeBonus = document.getElementById('raw-home-bonus')
+const rawHomeDoubleBonus = document.getElementById('raw-home-bonus2')
+const rawVisitorFouls = document.getElementById('raw-visitor-fouls')
+const rawVisitorBonus = document.getElementById('raw-visitor-bonus')
+const rawVisitorDoubleBonus = document.getElementById('raw-visitor-bonus2')
 
 const toggleAlertOff = document.getElementById('toggle-alert-off')
 const toggleAlertOn = document.getElementById('toggle-alert-on')
@@ -57,6 +63,12 @@ socket.on('update', payload => {
     rawClock.innerText = payload.clock
     rawShot.innerText = payload.shot
     rawPeriod.innerText = payload.period
+    rawHomeFouls.innerText = payload.home_fouls
+    rawHomeBonus.innerText = payload.home_bonus
+    rawHomeDoubleBonus.innerText = payload.home_double_bonus
+    rawVisitorFouls.innerText = payload.visitor_fouls
+    rawVisitorBonus.innerText = payload.visitor_bonus
+    rawVisitorDoubleBonus.innerText = payload.visitor_double_bonus
 })
 
 function StatusUpdate() {
