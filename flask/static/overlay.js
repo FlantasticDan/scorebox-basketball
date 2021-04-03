@@ -35,7 +35,7 @@ socket.on('update', payload => {
     gameClock.innerText = payload.clock
     shotClock.innerText = parseInt(payload.shot)
 
-    if (parseInt(payload.play) <= 7)
+    if (parseInt(payload.shot) <= 7)
     {
         shotClock.classList.add('red')
     }
