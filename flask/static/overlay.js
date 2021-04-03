@@ -33,9 +33,9 @@ socket.on('update', payload => {
     homeScore.innerText = payload.home_score
     visitorScore.innerText = payload.visitor_score
     gameClock.innerText = payload.clock
-    shotClock.innerText = parseInt(payload.play)
+    shotClock.innerText = parseInt(payload.shot)
 
-    if (parseInt(payload.play) <= 5)
+    if (parseInt(payload.play) <= 7)
     {
         shotClock.classList.add('red')
     }
@@ -44,22 +44,13 @@ socket.on('update', payload => {
         shotClock.classList.remove('red')
     }
 
-    if (payload.quarter != 0)
+    if (payload.period != 0)
     {
-        period.innerText = payload.quarter
+        period.innerText = payload.period
     }
     else
     {
         period.innerText = ''
-    }
-    
-    if (payload.down != '' && payload.down != '   ')
-    {
-        downs.innerText = `${payload.down} & ${payload.to_go}`
-    }
-    else
-    {
-        downs.innerText = ''
     }
 
 })

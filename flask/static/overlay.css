@@ -70,7 +70,7 @@ body{
 }
 
 .alert-box.team-alert{
-    width: 25vw;
+    width: 27vw;
 }
 
 .alert-box.home-alert{
@@ -190,12 +190,12 @@ body{
 
 #clock{
     background: var(--dark-grey);
-    width: 10vw;
+    width: 6vw;
     display: grid;
     place-items: center;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr auto 1fr;
     grid-template-rows: var(--mascot-row) var(--name-row);
-    grid-template-areas: "period clock shot" "hpos downs vpos";
+    grid-template-areas: "clock clock clock" "period . shot";
 }
 
 #game-clock{
@@ -219,7 +219,7 @@ body{
 
 #period{
     grid-area: period;
-    padding-bottom: 0.25vw;
+    padding-bottom: 0.45vw;
     font-size: 1.05vw;
     font-weight: 500;
 }

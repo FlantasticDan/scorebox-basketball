@@ -422,7 +422,7 @@ iframe{
 .raw-data{
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(13, 1fr);
+    grid-template-columns: repeat(15, 1fr);
     font-family: 'Source Sans Pro';
     text-align: center;
 }
