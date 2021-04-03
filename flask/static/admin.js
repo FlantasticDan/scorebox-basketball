@@ -1,8 +1,5 @@
 const status = document.getElementById('status')
 
-const homeTouchdownBtn = document.getElementById('home-touchdown-btn')
-const visitorTouchdownBtn = document.getElementById('visitor-touchdown-btn')
-
 const rawHomeScore = document.getElementById('raw-home-score')
 const rawVisitorScore = document.getElementById('raw-visitor-score')
 const rawHomeTimeouts = document.getElementById('raw-home-timeouts')
@@ -10,12 +7,8 @@ const rawVisitorTimeouts = document.getElementById('raw-visitor-timeouts')
 const rawHomePossesion = document.getElementById('raw-home-possesion')
 const rawVisitorPossesion = document.getElementById('raw-visitor-possesion')
 const rawClock = document.getElementById('raw-clock')
-const rawPlay = document.getElementById('raw-play')
-const rawQuarter = document.getElementById('raw-quarter')
-const rawDown = document.getElementById('raw-down')
-const rawToGo = document.getElementById('raw-to-go')
-const rawBallOn = document.getElementById('raw-ball-on')
-const rawFlag = document.getElementById('raw-flag')
+const rawShot = document.getElementById('raw-shot')
+const rawPeriod = document.getElementById('raw-period')
 
 const toggleAlertOff = document.getElementById('toggle-alert-off')
 const toggleAlertOn = document.getElementById('toggle-alert-on')
@@ -54,14 +47,6 @@ socket.on('disconnect', () => {
     status.classList.add('error')
 })
 
-homeTouchdownBtn.onclick = () => {
-    socket.emit('touchdown', 'home')
-}
-
-visitorTouchdownBtn.onclick = () => {
-    socket.emit('touchdown', 'visitor')
-}
-
 socket.on('update', payload => {
     rawHomeScore.innerText = payload.home_score
     rawVisitorScore.innerText = payload.visitor_score
@@ -70,69 +55,16 @@ socket.on('update', payload => {
     rawHomePossesion.innerText = payload.home_possesion
     rawVisitorPossesion.innerText = payload.visitor_possesion
     rawClock.innerText = payload.clock
-    rawPlay.innerText = payload.play
-    rawQuarter.innerText = payload.quarter
-    rawDown.innerText = payload.down
-    rawToGo.innerText = payload.to_go
-    rawBallOn.innerText = payload.ball_on
-    rawFlag.innerText = payload.flag
+    rawShot.innerText = payload.shot
+    rawPeriod.innerText = payload.period
 })
 
-function ClearFlagToggles() {
-    toggleFlagConsole.classList.remove('toggled')
-    toggleFlagOff.classList.remove('toggled')
-    toggleFlagOn.classList.remove('toggled')
-}
-
-function SetFlagToggle(newState) {
-    ClearFlagToggles()
-    switch (newState)
-    {
-        case "on":
-            toggleFlagOn.classList.add('toggled')
-            break
-        case "off":
-            toggleFlagOff.classList.add('toggled')
-            break
-        case "console":
-            toggleFlagConsole.classList.add('toggled')
-            break
-        default:
-            break
-    }
-}
-
-function FlagStatusChange(newState) {
-    socket.emit('flag-status', newState)
-}
-
-toggleFlagConsole.onclick = () => {FlagStatusChange('console')}
-toggleFlagOff.onclick = () => {FlagStatusChange('off')}
-toggleFlagOn.onclick = () => {FlagStatusChange('on')}
-
 function StatusUpdate() {
-    SetFlagToggle(statusObject.flag)
     SetAlertModeToggle(statusObject.alert_mode)
     SetAlertVisibilityToggle(statusObject.alert_visibility)
     alertPreview.innerText = statusObject.alert_text
     SetDisplayToggle(statusObject.display_mode)
 }
-
-function AssignPenalty(team) {
-    let offense = flagInput.value
-    if (offense.length > 0)
-    {
-        let payload = {
-            team: team,
-            offense: offense
-        }
-        socket.emit('flag-alert', payload)
-    }
-    flagInput.value = ""
-}
-
-homePenalty.onclick = () => {AssignPenalty('home')}
-visitorPenalty.onclick = () => {AssignPenalty('visitor')}
 
 function ClearAlertModeToggles() {
     toggleAlertModeHome.classList.remove('toggled')

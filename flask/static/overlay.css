@@ -170,7 +170,7 @@ body{
 
 #home{
     grid-template-areas: "logo name score" "logo mascot score";
-    grid-template-columns: auto auto 1fr auto;
+    grid-template-columns: auto 1fr auto;
     text-align: right;
 }
 
@@ -180,7 +180,7 @@ body{
 
 #visitor{
     grid-template-areas: "score name logo" "score mascot logo";
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: auto 1fr auto;
     text-align: left;
 }
 

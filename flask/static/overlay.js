@@ -5,7 +5,6 @@ const visitorScore = document.getElementById('visitor-score')
 const gameClock = document.getElementById('game-clock')
 const shotClock = document.getElementById('shot-clock')
 const period = document.getElementById('period')
-const downs = document.getElementById('downs')
 
 const homeSummaryScore = document.getElementById('home-summary-score')
 const visitorSummaryScore = document.getElementById('visitor-summary-score')
@@ -118,7 +117,6 @@ function ScoreBoxOut() {
 
 function ScoreBoxIn() {
     scorebox.classList.remove('out')
-    homeFlag.classList.remove('out')
     neutralAlert.classList.remove('out')
     homeAlert.classList.remove('out')
     visitorAlert.classList.remove('out')
