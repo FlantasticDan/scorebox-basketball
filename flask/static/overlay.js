@@ -35,6 +35,11 @@ socket.on('update', payload => {
     gameClock.innerText = payload.clock
     shotClock.innerText = parseInt(payload.shot)
 
+    if (shotClock.innerText == 'NaN')
+    {
+        shotClock.innerText = ''
+    }
+
     if (parseInt(payload.shot) <= 7)
     {
         shotClock.classList.add('red')
