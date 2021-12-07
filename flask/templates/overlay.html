@@ -78,6 +78,71 @@
 
         <script src="/static/third-party/socket.io.min.js"></script>
         <script src="/static/overlay.js"></script>
+        <script>
+            {% if not remote %}
+                socket.on('update', payload => {
+                    homeScore.innerText = payload.home_score
+                    visitorScore.innerText = payload.visitor_score
+                    gameClock.innerText = payload.clock
+                    shotClock.innerText = parseInt(payload.shot)
+
+                    if (shotClock.innerText == 'NaN')
+                    {
+                        shotClock.innerText = ''
+                    }
+
+                    if (parseInt(payload.shot) <= 7)
+                    {
+                        shotClock.classList.add('red')
+                    }
+                    else
+                    {
+                        shotClock.classList.remove('red')
+                    }
+
+                    if (payload.period != 0)
+                    {
+                        period.innerText = payload.period
+                    }
+                    else
+                    {
+                        period.innerText = ''
+                    }
+
+                })
+            {% else %}
+                source = io("{{source}}:9876")
+                source.on('update', payload => {
+                    homeScore.innerText = payload.home_score
+                    visitorScore.innerText = payload.visitor_score
+                    gameClock.innerText = payload.clock
+                    shotClock.innerText = parseInt(payload.shot)
+
+                    if (shotClock.innerText == 'NaN')
+                    {
+                        shotClock.innerText = ''
+                    }
+
+                    if (parseInt(payload.shot) <= 7)
+                    {
+                        shotClock.classList.add('red')
+                    }
+                    else
+                    {
+                        shotClock.classList.remove('red')
+                    }
+
+                    if (payload.period != 0)
+                    {
+                        period.innerText = payload.period
+                    }
+                    else
+                    {
+                        period.innerText = ''
+                    }
+                })
+            {% endif %}
+        </script>
 
     </body>
 

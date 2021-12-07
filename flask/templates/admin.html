@@ -163,6 +163,74 @@
 
         <script src="/static/third-party/socket.io.min.js"></script>
         <script src="/static/admin.js"></script>
+        <script>
+            {% if not remote %}
+                socket.on('status', payload => {
+                    status.innerText = 'CONNECTED'
+                    status.classList.remove('error')
+                    statusObject = payload
+                    StatusUpdate()
+                })
+
+                socket.on('disconnect', () => {
+                    status.innerText = 'DISCONNECTED'
+                    status.classList.add('error')
+                })
+
+                socket.on('update', payload => {
+                    rawHomeScore.innerText = payload.home_score
+                    rawVisitorScore.innerText = payload.visitor_score
+                    rawHomeTimeouts.innerText = payload.home_timeouts
+                    rawVisitorTimeouts.innerText = payload.visitor_timeouts
+                    rawHomePossesion.innerText = payload.home_possesion
+                    rawVisitorPossesion.innerText = payload.visitor_possesion
+                    rawClock.innerText = payload.clock
+                    rawShot.innerText = payload.shot
+                    rawPeriod.innerText = payload.period
+                    rawHomeFouls.innerText = payload.home_fouls
+                    rawHomeBonus.innerText = payload.home_bonus
+                    rawHomeDoubleBonus.innerText = payload.home_double_bonus
+                    rawVisitorFouls.innerText = payload.visitor_fouls
+                    rawVisitorBonus.innerText = payload.visitor_bonus
+                    rawVisitorDoubleBonus.innerText = payload.visitor_double_bonus
+                })
+            {% else %}
+                source = io("{{source}}:9876")
+
+                socket.on('status', payload => {
+                    statusObject = payload
+                    StatusUpdate()
+                })
+
+                source.on('connect', () => {
+                    status.innerText = 'CONNECTED'
+                    status.classList.remove('error')
+                })
+
+                source.on('disconnect', () => {
+                    status.innerText = 'DISCONNECTED'
+                    status.classList.add('error')
+                })
+
+                source.on('update', payload => {
+                    rawHomeScore.innerText = payload.home_score
+                    rawVisitorScore.innerText = payload.visitor_score
+                    rawHomeTimeouts.innerText = payload.home_timeouts
+                    rawVisitorTimeouts.innerText = payload.visitor_timeouts
+                    rawHomePossesion.innerText = payload.home_possesion
+                    rawVisitorPossesion.innerText = payload.visitor_possesion
+                    rawClock.innerText = payload.clock
+                    rawShot.innerText = payload.shot
+                    rawPeriod.innerText = payload.period
+                    rawHomeFouls.innerText = payload.home_fouls
+                    rawHomeBonus.innerText = payload.home_bonus
+                    rawHomeDoubleBonus.innerText = payload.home_double_bonus
+                    rawVisitorFouls.innerText = payload.visitor_fouls
+                    rawVisitorBonus.innerText = payload.visitor_bonus
+                    rawVisitorDoubleBonus.innerText = payload.visitor_double_bonus
+                })
+            {% endif %}
+        </script>
     </body>
 
 </html>

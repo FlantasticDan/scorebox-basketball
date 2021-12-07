@@ -5,7 +5,7 @@ from images import Logos
 from manager import BasketballManager
 from bundle import bundle
 
-VERSION = 'v1.0.1 (05072021)'
+VERSION = 'v2.0.0 (12062021)'
 LOGOS = Logos()
 MANAGER = None # type: BasketballManager
 
@@ -43,7 +43,7 @@ def visitor():
 def overlay():
     global MANAGER
     if MANAGER:
-        return render_template('overlay.html', **MANAGER.overlay_export())
+        return render_template('overlay.html', remote=MANAGER.remote, source=MANAGER.source, **MANAGER.overlay_export())
 
 @socketio.on('update')
 def update(payload):
@@ -52,7 +52,7 @@ def update(payload):
 @app.route('/admin')
 def admin():
     global MANAGER
-    return render_template("admin.html", version=VERSION, **MANAGER.overlay_export())
+    return render_template("admin.html", version=VERSION, remote=MANAGER.remote, source=MANAGER.source, **MANAGER.overlay_export())
 
 @socketio.on('touchdown')
 def touchdown(data):

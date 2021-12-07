@@ -41,36 +41,6 @@ socket.on('connect', () => {
     socket.emit('status-request', 'status')
 })
 
-socket.on('status', payload => {
-    status.innerText = 'CONNECTED'
-    status.classList.remove('error')
-    statusObject = payload
-    StatusUpdate()
-})
-
-socket.on('disconnect', () => {
-    status.innerText = 'DISCONNECTED'
-    status.classList.add('error')
-})
-
-socket.on('update', payload => {
-    rawHomeScore.innerText = payload.home_score
-    rawVisitorScore.innerText = payload.visitor_score
-    rawHomeTimeouts.innerText = payload.home_timeouts
-    rawVisitorTimeouts.innerText = payload.visitor_timeouts
-    rawHomePossesion.innerText = payload.home_possesion
-    rawVisitorPossesion.innerText = payload.visitor_possesion
-    rawClock.innerText = payload.clock
-    rawShot.innerText = payload.shot
-    rawPeriod.innerText = payload.period
-    rawHomeFouls.innerText = payload.home_fouls
-    rawHomeBonus.innerText = payload.home_bonus
-    rawHomeDoubleBonus.innerText = payload.home_double_bonus
-    rawVisitorFouls.innerText = payload.visitor_fouls
-    rawVisitorBonus.innerText = payload.visitor_bonus
-    rawVisitorDoubleBonus.innerText = payload.visitor_double_bonus
-})
-
 function StatusUpdate() {
     SetAlertModeToggle(statusObject.alert_mode)
     SetAlertVisibilityToggle(statusObject.alert_visibility)

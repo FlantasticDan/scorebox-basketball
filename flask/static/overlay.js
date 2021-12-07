@@ -29,37 +29,6 @@ socket.on('status', payload => {
     StatusUpdate()
 })
 
-socket.on('update', payload => {
-    homeScore.innerText = payload.home_score
-    visitorScore.innerText = payload.visitor_score
-    gameClock.innerText = payload.clock
-    shotClock.innerText = parseInt(payload.shot)
-
-    if (shotClock.innerText == 'NaN')
-    {
-        shotClock.innerText = ''
-    }
-
-    if (parseInt(payload.shot) <= 7)
-    {
-        shotClock.classList.add('red')
-    }
-    else
-    {
-        shotClock.classList.remove('red')
-    }
-
-    if (payload.period != 0)
-    {
-        period.innerText = payload.period
-    }
-    else
-    {
-        period.innerText = ''
-    }
-
-})
-
 function StatusUpdate() {
     if (statusObject.alert_visibility == 'off')
     {
